@@ -1,0 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+$primary: #22577a;
+$secondary: #38a3a5;
+html {
+  height: 100%;
+  body {
+    background: linear-gradient($primary, $secondary);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .box {
+      width: 400px;
+      box-sizing: border-box;
+      padding: 20px 20px;
+      background-color: white;
+      box-shadow: 0 0 10px #ddd;
+      form {
+        h2 {
+          text-align: center;
+        }
+        ul {
+          li {
+            list-style: none;
+            label {
+              display: block;
+              padding: 10px 0 5px 0;
+            }
+            input {
+              display: inline-block;
+              width: 100%;
+              box-sizing: border-box;
+              padding: 5px 5px;
+              background-color: white;
+              outline: none;
+              border: 1px solid #ddd;
+            }
+            button {
+              display: inline-block;
+              width: 100%;
+              padding: 10px 0;
+              border-radius: 7px;
+              margin-top: 15px;
+              text-align: center;
+              outline: none;
+              border: none;
+              color: #fff;
+              font-weight: bold;
+              opacity: 0.8;
+              background-color: $secondary;
+              &.kembali {
+                background-color: orangered;
+                a {
+                  display: block;
+                  text-decoration: none;
+                  color: white;
+                }
+              }
+              &:hover {
+                cursor: pointer;
+                opacity: 1;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

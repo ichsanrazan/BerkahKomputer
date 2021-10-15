@@ -1,0 +1,135 @@
+// all content
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+// variabel
+$biru-muda: rgb(137, 172, 224);
+// variabel
+$primary: #22577a;
+$biru: blue;
+$secondary: #38a3a5;
+// konten
+.pembungkus {
+  display: flex;
+  .sidebar {
+    flex: 1;
+    background-color: $primary;
+    p {
+      color: white;
+      font-family: Georgia, "Times New Roman", Times, serif;
+      padding: 10px 0;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    ul {
+      li {
+        padding: 10px 5px;
+        background-color: $primary;
+        list-style: none;
+        border: none;
+        a {
+          display: block;
+          text-decoration: none;
+          color: white;
+          span {
+            display: inline-block;
+            margin-left: 10px;
+          }
+        }
+        &:hover {
+          cursor: pointer;
+          background-color: $secondary;
+        }
+      }
+      li.user {
+        background-color: $secondary;
+        box-shadow: 5px 0 7px rgb(168, 168, 168);
+      }
+    }
+  }
+  .pembungkus-konten {
+    flex: 5;
+    .navbar {
+      background-color: $primary;
+      .nav {
+        display: inline-block;
+        padding: 12px 30px;
+        color: white;
+      }
+      .profile {
+        display: inline-block;
+        margin-left: 700px;
+        p {
+          display: inline-block;
+          color: white;
+        }
+        img {
+          width: 30px;
+          border-radius: 50%;
+          position: absolute;
+          top: 5px;
+          margin-left: 10px;
+        }
+      }
+    }
+    .konten {
+      box-sizing: border-box;
+      padding: 20px 40px;
+
+      h1 {
+        font-family: Georgia, "Times New Roman", Times, serif;
+        padding-bottom: 20px;
+        letter-spacing: 1px;
+        font-size: 30px;
+        color: $primary;
+        text-shadow: 2px 0 0 $secondary;
+      }
+      form {
+        padding-bottom: 10px;
+        input {
+          padding: 2px 5px;
+          outline: none;
+          width: 300px;
+          border: none;
+          border-bottom: 2px solid rgb(156, 156, 156);
+          letter-spacing: 1px;
+        }
+        button {
+          padding: 4px 10px;
+          border: none;
+          border-radius: 5px;
+          margin-left: 10px;
+          background-color: rgb(74, 143, 247);
+          color: white;
+          span {
+            display: inline-block;
+            margin-left: 3px;
+          }
+          &:hover {
+            cursor: pointer;
+            opacity: 0.8;
+          }
+        }
+      }
+      .tabel {
+        margin-top: 10px;
+        height: 500px;
+        border: 1px solid #bbb;
+      }
+    }
+  }
+}
+
+// footer
+footer {
+  background-color: $primary;
+  p {
+    text-align: center;
+    color: white;
+    padding: 20px 0;
+  }
+}

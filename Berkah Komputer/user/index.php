@@ -111,25 +111,25 @@
 				<h2>CPU</h2>
 				<p>Kami menyediakan CPU AMD dan Intel dengan kualitas tinggi.</p>
 				<a href="#" class="da-link">Lihat Produk</a>
-				<div class="da-img"><img src="img/parallax-slider/kaos.png" alt="image01" /></div>
+				<div class="da-img"><img src="img/parallax-slider/cpu.png" alt="image01" /></div>
 			</div>
 			<div class="da-slide">
 				<h2>GPU</h2>
 				<p>Kami memiliki banyak pilihan GPU bagi para gamers dari harga yang terjangkau hingga premium.</p>
 				<a href="#" class="da-link">Lihat Produk</a>
-				<div class="da-img"><img src="img/parallax-slider/jaket5.png" alt="image02" /></div>
+				<div class="da-img"><img src="img/parallax-slider/gpu.png" alt="image02" /></div>
 			</div>
 			<div class="da-slide">
 				<h2>Motherboard</h2>
 				<p>Miliki Motherboard yang berkualitas tinggi untuk PC rakitan anda.</p>
 				<a href="#" class="da-link">Lihat Produk</a>
-				<div class="da-img"><img src="img/parallax-slider/jeans.png" alt="image03" /></div>
+				<div class="da-img"><img src="img/parallax-slider/motherboard.png" alt="image03" /></div>
 			</div>
 			<div class="da-slide">
 				<h2>RAM</h2>
 				<p>Tingkatkan RAM PC anda untuk meningkatkan kecepatan PC anda.</p>
 				<a href="#" class="da-link">Lihat Produk</a>
-				<div class="da-img"><img src="img/parallax-slider/kaos.png" alt="image04" /></div>
+				<div class="da-img"><img src="img/parallax-slider/ram.png" alt="image04" /></div>
 			</div>
 			<nav class="da-arrows">
 				<span class="da-arrows-prev"></span>

@@ -1,6 +1,9 @@
 <?php
 session_start();
-session_destroy();	
 
-    echo "<script>alert('Anda telah berhasil keluar.'); window.location = 'index.html'</script>";
+$_SESSION = [];
+session_destroy();
+session_unset();
+echo "<script>alert('logout berhasil');</script>";
+echo "<script>document.location.href='index.php';</script>";
 ?>

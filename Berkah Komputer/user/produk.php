@@ -1,16 +1,14 @@
-<?php require_once("koneksi.php");
-    if (!isset($_SESSION)) {
-        session_start();
-    } ?>
+<?php 
+session_start();
+// koneksi database
+require_once "../database/db.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<!-- start: Meta -->
 	<meta charset="utf-8">
 	<title>DistroIT | Distro Online telengkap dan terpercaya di cikarang</title> 
-	<meta name="description" content="Distro, cikarang, terlengkap, information, technology, jababeka, baru, murah"/>
-	<meta name="keywords" content="Kaos, Murah, Cikarang, Baru, terlengkap, harga, terjangkau" />
-	<meta name="author" content="Hakko Bio Richard"/>
 	<!-- end: Meta -->
 	
 	<!-- start: Mobile Specific -->
@@ -33,6 +31,20 @@
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif">
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Boogaloo">
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Economica:700,400italic">
+	<style>
+	  .span4{
+		  box-shadow:0 0 10px #dddd;
+	  }
+	  .gambar{
+		  overflow:hidden;
+		  width:100%;
+		  height:250px;
+	  }
+	  .gambar img{
+		  width:100%;
+		  height:100%;
+	  }
+   </style>
 	<!-- end: CSS -->
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -71,21 +83,25 @@
 			          		</a>
 			          		<div class="nav-collapse collapse">
 			            		<ul class="nav">
-			              			<li class="active"><a href="index.php">Home</a></li>
-			              			<li><a href="produk.php">Produk Kami</a></li>
+			              			<li><a href="index.php">Home</a></li>
+			              			<li  class="active"><a href="produk.php">Produk Kami</a></li>
 									<li><a href="testimoni.php">Testimoni</a></li>
                                     <li><a href="detail.php">Keranjang</a></li>
-			              			<li class="dropdown">
-			                			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Login <b class="caret"></b></a>
+									<?php if(isset($_SESSION["user"])): ?>
+									<li><a href="logout.php">Logout</a></li>
+			  						<?php else: ?>
+			  							<li class="dropdown">
+			   							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login <b class="caret"></b></a>
 			                			<ul class="dropdown-menu">
-			                  				<li><a href="index.html">Admin</a></li>
-			                  				<li><a href="index.php">Konsumen</a></li>
+			                  				<li><a href="../admin/login.php">Admin</a></li>
+			                  				<li><a href="login.php">User</a></li>
 			                  				<!--<li class="divider"></li>
 			                  				<li class="nav-header">Nav header</li>
 			                  				<li><a href="#">Separated link</a></li>
 			                  				<li><a href="#">One more separated link</a></li>-->
 			                			</ul>
 			              			</li>
+							<?php endif; ?>
 			            		</ul>
 			          		</div>
 			        	</div>
@@ -133,27 +149,23 @@
             
       		<div class="row">
 	<?php
-                    $sql = mysqli_query($koneksi, "SELECT * FROM barang ORDER BY br_id DESC");
-	if(mysqli_num_rows($sql) == 0){
-		echo "Tidak ada produk!";
-	}else{
-		while($data = mysqli_fetch_assoc($sql)){
-                    ?>
+    $sql = $db->query("SELECT*FROM barang");
+		while($data = $sql->fetch_assoc()){?>
         		<div class="span4">
           			<div class="icons-box">
-                        <div class="title"><h3><?php echo $data['br_nm']; ?></h3></div>
-                        <img src="<?php echo $data['br_gbr']; ?>" />
-						<div><h3>Rp.<?php echo number_format($data['br_hrg'],2,",",".");?></h3></div>
+                        <div class="title"><h3><?php echo $data['merek']; ?></h3></div>
+                        <div class="gambar"><img src="../admin/css/img/<?php echo $data['gambar']; ?>"></div>
+						<div><h3>Rp.<?php echo number_format($data['harga']);?></h3></div>
 					<!--	<p>
 						
 						</p> -->
-						<div class="clear"><a href="detailproduk.php?hal=detailbarang&kd=<?php echo $data['br_id'];?>" class="btn btn-lg btn-danger">Detail</a> <a href="detailproduk.php?hal=detailbarang&kd=<?php echo $data['br_id'];?>" class="btn btn-lg btn-success">Beli &raquo;</a></div>
+						<div class="clear"><a href="detailproduk.php?uniq=<?php echo $data['id_barang'];?>" class="btn btn-lg btn-danger">Detail</a> </div>
 
                     </div>
         		</div>
                 <?php   
               }
-              }
+           
               
               ?>
 <!---->
@@ -171,98 +183,9 @@
 	
 		</div>
 		<!--end: Container-->
-				
-		<!--start: Container -->
-    	<div class="container">	
-      		
-			<hr>
-		
-			<!-- start Clients List -->	
-			<div class="clients-carousel">
-		
-				<ul class="slides clients">
-					<li><img src="img/logos/1.png" alt=""/></li>
-					<li><img src="img/logos/2.png" alt=""/></li>	
-					<li><img src="img/logos/3.png" alt=""/></li>
-					<li><img src="img/logos/4.png" alt=""/></li>
-					<li><img src="img/logos/5.png" alt=""/></li>
-					<li><img src="img/logos/6.png" alt=""/></li>
-					<li><img src="img/logos/7.png" alt=""/></li>
-					<li><img src="img/logos/8.png" alt=""/></li>
-					<li><img src="img/logos/9.png" alt=""/></li>
-					<li><img src="img/logos/10.png" alt=""/></li>		
-				</ul>
-		
-			</div>
-			<!-- end Clients List -->
-		
-			<hr>
-		
-		</div>
-		<!--end: Container-->	
-
+	
 	</div>
 	<!-- end: Wrapper  -->			
-
-    <!-- start: Footer Menu -->
-	<div id="footer-menu" class="hidden-tablet hidden-phone">
-
-		<!-- start: Container -->
-		<div class="container">
-			
-			<!-- start: Row -->
-			<div class="row">
-
-				<!-- start: Footer Menu Logo -->
-				<div class="span2">
-					<div id="footer-menu-logo">
-						<a href="#"><img src="img/logo-footer-menu.png" alt="logo" /></a>
-					</div>
-				</div>
-				<!-- end: Footer Menu Logo -->
-
-				<!-- start: Footer Menu Links-->
-				<div class="span9">
-					
-					<div id="footer-menu-links">
-
-						<ul id="footer-nav">
-
-							<li><a href="#">CPU</a></li>
-
-							<li><a href="#">GPU</a></li>
-
-							<li><a href="#">Motherboard</a></li>
-
-							<li><a href="#">RAM</a></li>
-
-							<li><a href="#">SSD</a></li>
-
-						</ul>
-
-					</div>
-					
-				</div>
-				<!-- end: Footer Menu Links-->
-
-				<!-- start: Footer Menu Back To Top -->
-				<div class="span1">
-						
-					<div id="footer-menu-back-to-top">
-						<a href="#"></a>
-					</div>
-				
-				</div>
-				<!-- end: Footer Menu Back To Top -->
-			
-			</div>
-			<!-- end: Row -->
-			
-		</div>
-		<!-- end: Container  -->	
-
-	</div>	
-	<!-- end: Footer Menu -->
 
 	<!-- start: Footer -->
 	<div id="footer">
@@ -386,7 +309,7 @@
 		<div class="container">
 		
 			<p>
-				Copyright &copy; <a href="http://www.niqoweb.com">BerkahKomputer 2021</a> <a href="http://bootstrapmaster.com" alt="Bootstrap Themes">Bootstrap Themes</a> designed by BootstrapMaster
+			Copyright &copy; 2021 <!-- <a href="http://www.niqoweb.com">DistroIT 2015</a> <a href="http://bootstrapmaster.com" alt="Bootstrap Themes">Bootstrap Themes</a> designed by BootstrapMaster -->
 			</p>
 	
 		</div>

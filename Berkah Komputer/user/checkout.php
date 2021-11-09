@@ -1,4 +1,12 @@
-<?php require_once("cart.php"); ?>
+<?php
+session_start();
+
+if(!isset($_SESSION["user"])){
+	echo "<script>alert('silahkan login terlebih dahulu');</script>";
+	echo "<script>document.location.href='detail.php';</script>";
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,17 +80,21 @@
 			              			<li><a href="produk.php">Produk Kami</a></li>
 									<li><a href="testimoni.php">Testimoni</a></li>
                                     <li><a href="detail.php">Keranjang</a></li>
-			              			<li class="dropdown">
-			                			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Login <b class="caret"></b></a>
+									<?php if(isset($_SESSION["user"])): ?>
+									<li><a href="logout.php">Logout</a></li>
+			  						<?php else: ?>
+			  						<li class="dropdown">
+			    					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Login <b class="caret"></b></a>
 			                			<ul class="dropdown-menu">
-			                  				<li><a href="index.html">Admin</a></li>
-			                  				<li><a href="index.php">Konsumen</a></li>
+			                  				<li><a href="../admin/login.php">Admin</a></li>
+			                  				<li><a href="login.php">User</a></li>
 			                  				<!--<li class="divider"></li>
 			                  				<li class="nav-header">Nav header</li>
 			                  				<li><a href="#">Separated link</a></li>
 			                  				<li><a href="#">One more separated link</a></li>-->
 			                			</ul>
 			              			</li>
+									<?php endif; ?>
 			            		</ul>
 			          		</div>
 			        	</div>
@@ -212,57 +224,6 @@
 			<!-- start: Row -->
 			<div class="row">
 
-				<!-- start: Footer Menu Logo -->
-				<div class="span2">
-					<div id="footer-menu-logo">
-						<a href="#"><img src="img/logo-footer-menu.png" alt="logo" /></a>
-					</div>
-				</div>
-				<!-- end: Footer Menu Logo -->
-
-				<!-- start: Footer Menu Links-->
-				<div class="span9">
-					
-					<div id="footer-menu-links">
-
-						<ul id="footer-nav">
-
-							<li><a href="#">Kemeja</a></li>
-
-							<li><a href="#">Kaos</a></li>
-
-							<li><a href="#">Sweater</a></li>
-
-							<li><a href="#">Jacket</a></li>
-							
-							<li><a href="#">Pants & Jeans</a></li>
-
-						</ul>
-
-					</div>
-					
-				</div>
-				<!-- end: Footer Menu Links-->
-
-				<!-- start: Footer Menu Back To Top -->
-				<div class="span1">
-						
-					<div id="footer-menu-back-to-top">
-						<a href="#"></a>
-					</div>
-				
-				</div>
-				<!-- end: Footer Menu Back To Top -->
-			
-			</div>
-			<!-- end: Row -->
-			
-		</div>
-		<!-- end: Container  -->	
-
-	</div>	
-	<!-- end: Footer Menu -->
-
 	<!-- start: Footer -->
 	<div id="footer">
 		
@@ -385,7 +346,7 @@
 		<div class="container">
 		
 			<p>
-				Copyright &copy; <a href="http://www.niqoweb.com">DistroIT 2015</a> <a href="http://bootstrapmaster.com" alt="Bootstrap Themes">Bootstrap Themes</a> designed by BootstrapMaster
+			Copyright &copy; 2021 <!-- <a href="http://www.niqoweb.com">DistroIT 2015</a> <a href="http://bootstrapmaster.com" alt="Bootstrap Themes">Bootstrap Themes</a> designed by BootstrapMaster -->
 			</p>
 	
 		</div>

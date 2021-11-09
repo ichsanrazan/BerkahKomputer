@@ -1,7 +1,8 @@
-<?php require_once("koneksi.php");
-    if (!isset($_SESSION)) {
-        session_start();
-    } ?>
+<?php
+session_start();
+// koneksi database
+require_once "../database/db.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,21 +72,25 @@
 			          		</a>
 			          		<div class="nav-collapse collapse">
 			            		<ul class="nav">
-			              			<li class="active"><a href="index.php">Home</a></li>
+			              			<li><a href="index.php">Home</a></li>
 			              			<li><a href="produk.php">Produk Kami</a></li>
 									<li><a href="testimoni.php">Testimoni</a></li>
-                                    <li><a href="detail.php">Keranjang</a></li>
-			              			<li class="dropdown">
-			                			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Login <b class="caret"></b></a>
+                                    <li class="active"><a href="detail.php">Keranjang</a></li>
+									<?php if(isset($_SESSION["user"])): ?>
+									<li><a href="logout.php">Logout</a></li>
+			  						<?php else: ?>
+			  						<li class="dropdown">
+			    					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Login <b class="caret"></b></a>
 			                			<ul class="dropdown-menu">
-			                  				<li><a href="index.html">Admin</a></li>
-			                  				<li><a href="index.php">Konsumen</a></li>
+			                  				<li><a href="../admin/login.php">Admin</a></li>
+			                  				<li><a href="login.php">User</a></li>
 			                  				<!--<li class="divider"></li>
 			                  				<li class="nav-header">Nav header</li>
 			                  				<li><a href="#">Separated link</a></li>
 			                  				<li><a href="#">One more separated link</a></li>-->
 			                			</ul>
 			              			</li>
+									<?php endif; ?>
 			            		</ul>
 			          		</div>
 			        	</div>
@@ -137,35 +142,34 @@
 					<th><center>Jumlah</center></th>
 					<th><center>Harga Satuan</center></th>
 					<th><center>Sub Total</center></th>
-					<th><center>Opsi</center></th>
+					<th><center>Aksi</center></th>
 				</tr>
 			    <?php
 				//MENAMPILKAN DETAIL KERANJANG BELANJA//
                 
     $total = 0;
     //mysql_select_db($database_conn, $conn);
-    if (isset($_SESSION['items'])) {
-        foreach ($_SESSION['items'] as $key => $val) {
-            $query = mysqli_query($koneksi, "select * from barang where br_id = '$key'");
-            $data = mysqli_fetch_array($query);
+    if (isset($_SESSION["keranjang"])) {
+        foreach ($_SESSION["keranjang"] as $id => $val) {
+            $allData = $db->query("SELECT*FROM barang where id_barang = '$id'");
+            $data = $allData->fetch_assoc();
 
-            $jumlah_harga = $data['br_hrg'] * $val;
+            $jumlah_harga = $data['harga'] * $val;
             $total += $jumlah_harga;
-            $no = 1;
+            $nomor = 1;
+			
             ?>
                 <tr>
-                <td><center><?php echo $no++; ?></center></td>
-                <td><center><?php echo $data['br_id']; ?></center></td>
-                <td><center><?php echo $data['br_nm']; ?></center></td>
-                <td><center><?php echo number_format($data['br_hrg']); ?></center></td>
+                <td><center><?php echo $nomor; ?></center></td>
+                <td><center><?php echo $data['id_barang']; ?></center></td>
+                <td><center><?php echo $data['merek']; ?></center></td>
                 <td><center><?php echo number_format($val); ?></center></td>
+                <td><center><?php echo number_format($data["harga"]); ?></center></td>
                 <td><center><?php echo number_format($jumlah_harga); ?></center></td>
-                <td><center><a href="cart.php?act=plus&amp;barang_id=<?php echo $key; ?>&amp;ref=detail.php" class="btn btn-xs btn-success">Tambah</a> <a href="cart.php?act=min&amp;barang_id=<?php echo $key; ?>&amp;ref=detail.php" class="btn btn-xs btn-warning">Kurang</a> <a href="cart.php?act=del&amp;barang_id=<?php echo $key; ?>&amp;ref=detail.php" class="btn btn-xs btn-danger">Hapus</a></center></td>
+                <td><a href="" class="btn btn-xs btn-danger">Hapus</a></center></td>
                 </tr>
-                
-					<?php
-                    //mysql_free_result($query);			
-						}
+                <?php
+                    $nomor++;}
 							//$total += $sub;
 						}?>  
                          <?php
@@ -176,7 +180,7 @@
 						</div></p>';
 				} else {
 					echo '
-						<tr style="background-color: #DDD;"><td colspan="4" align="right"><b>Total :</b></td><td align="right"><b>Rp. '.number_format($total,2,",",".").'</b></td></td></td><td></td></tr></table>
+						<tr style="background-color: #DDD;"><td colspan="4" align="right"><b>Total :</b></td><td align="right"><b>Rp. '.number_format($total).'</b></td></td></td><td></td></tr></table>
 						<p><div align="right">
 						<a href="index.php" class="btn btn-info">&laquo; CONTINUE SHOPPING</a>
 						<a href="checkout.php?total='.$total.'" class="btn btn-success"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> CHECK OUT &raquo;</a>
@@ -378,7 +382,7 @@
 		<div class="container">
 		
 			<p>
-				Copyright &copy; <a href="http://www.niqoweb.com">BerkahKomputer 2021</a> <a href="http://bootstrapmaster.com" alt="Bootstrap Themes">Bootstrap Themes</a> designed by BootstrapMaster
+			Copyright &copy; 2021 <!-- <a href="http://www.niqoweb.com">DistroIT 2015</a> <a href="http://bootstrapmaster.com" alt="Bootstrap Themes">Bootstrap Themes</a> designed by BootstrapMaster -->
 			</p>
 	
 		</div>

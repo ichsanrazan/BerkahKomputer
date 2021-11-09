@@ -1,4 +1,4 @@
-<? 
+<?php
 
 $hr=array("Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu");
 $hari_ini=date("w");
@@ -14,7 +14,7 @@ $komentar = $_POST["komentar"];
 $fp = fopen("guestbook.txt","a+");
 fputs($fp,"$hari_ini|$tgl|$nama|$email|$komentar\n");
 fclose($fp);
-echo("<script>alert('Komentar anda telah berhasil ditambahkan.'); window.location = 'testimoni.php'</script>");
+echo "<script>alert('Komentar anda telah berhasil ditambahkan.'); window.location = 'testimoni.php'</script>";
 
 
 ?>

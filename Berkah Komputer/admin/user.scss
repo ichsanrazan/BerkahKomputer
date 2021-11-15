@@ -118,7 +118,22 @@ $secondary: #38a3a5;
       .tabel {
         margin-top: 10px;
         height: 500px;
-        border: 1px solid #bbb;
+        overflow-y: scroll;
+        table {
+          width: 700px;
+          border-collapse: collapse;
+          tr {
+            th,
+            td {
+              border: 2px solid rgb(179, 179, 179);
+              padding: 10px 0;
+              text-align: center;
+            }
+            &:nth-child(odd) {
+              background-color: rgb(209, 209, 209);
+            }
+          }
+        }
       }
     }
   }

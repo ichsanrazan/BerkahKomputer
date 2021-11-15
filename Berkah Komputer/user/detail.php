@@ -166,7 +166,7 @@ require_once "../database/db.php";
                 <td><center><?php echo number_format($val); ?></center></td>
                 <td><center><?php echo number_format($data["harga"]); ?></center></td>
                 <td><center><?php echo number_format($jumlah_harga); ?></center></td>
-                <td><a href="" class="btn btn-xs btn-danger">Hapus</a></center></td>
+                <td><center><a href="cart.php?uniq=<?php echo $data['id_barang'];?>" class="btn btn-xs btn-primary" style="margin-right:5px;">Tambah</a><a href="deleteCart.php?uniq=<?php echo $data['id_barang'];?>" class="btn btn-xs btn-danger">Hapus</a></center></td>
                 </tr>
                 <?php
                     $nomor++;}

@@ -21,15 +21,13 @@ if(isset($_POST["masuk"])){
         $data = $allData->fetch_assoc();
         if($password == $data["password"]){
 		$_SESSION["user"] = $data;
-		echo "<script>alert('login berhasil');</script>";
-		echo "<script>document.location.href='index.php';</script>";
+		header("location:index.php");
+		exit;
       }else{
-        echo "<script>alert('password salah');</script>";
-		echo "<script>document.location.href='login.php';</script>";
+        $alert = TRUE;
       }
 	}else{
-		echo "<script>alert('username salah');</script>";
-		echo "<script>document.location.href='login.php';</script>";
+		$alert = TRUE;
 	}
 }
 
@@ -47,6 +45,9 @@ if(isset($_POST["masuk"])){
 	<h1>Berkah Komputer</h1>
 	<div class="box-login">
 		<h2>Login</h2>
+		<?php if(isset($alert)):?>
+			<p style="color:red;background-color:rgb(255, 157, 157);font-style:italic;text-align:center;padding:5px 0;border-radius:5px;">username / password salah</p>
+		<?php endif;?>
 		<form action="" method="post">
 			<ul>
 				<li>

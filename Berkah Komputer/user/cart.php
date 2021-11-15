@@ -9,7 +9,7 @@ if(isset($_SESSION["keranjang"][$id])){
     $_SESSION["keranjang"][$id] = 1;
 }
 
-echo "<script>alert('barang ditambahkan kedalam keranjang')</script>";
-echo "<script>document.location.href='detail.php'</script>"
+header("location:detail.php");
+exit;
 
 ?>

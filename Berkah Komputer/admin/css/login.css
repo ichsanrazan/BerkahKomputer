@@ -46,6 +46,15 @@ html body .box-login h2 {
   font-size: 30px;
 }
 
+html body .box-login .alert {
+  text-align: center;
+  color: red;
+  font-style: italic;
+  padding: 7px 0;
+  background-color: #ff9d9d;
+  border-radius: 5px;
+}
+
 html body .box-login ul li {
   list-style: none;
   color: black;

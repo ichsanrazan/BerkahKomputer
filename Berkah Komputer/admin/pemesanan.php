@@ -37,7 +37,7 @@ if(!isset($_SESSION["admin"])){
         <div class="navbar">
           <p class="nav">Dashboard / Data Pemesanan</p>
           <div class="profile">
-            <p><?php echo "coba"; ?></p>
+            <p>Kelompok 3</p>
             <img src="css/img/admin.png" alt="profile" />
           </div>
         </div>

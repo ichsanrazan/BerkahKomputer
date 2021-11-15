@@ -16,11 +16,10 @@ if(isset($_POST["masuk"])){
 	$password = $_POST["password"];
 	if($username == "kelompok3" AND $password == "admin"){
 		$_SESSION["admin"] = $admin;
-		echo "<script>alert('login berhasil');</script>";
-		echo "<script>document.location.href='home.php';</script>";
+		header("location:home.php");
+		exit;
 	}else{
-		echo "<script>alert('login gagal');</script>";
-		echo "<script>document.location.href='login.php';</script>";
+		$alert = TRUE;
 	}
 }
 
@@ -38,6 +37,9 @@ if(isset($_POST["masuk"])){
 	<h1>Berkah Komputer</h1>
 	<div class="box-login">
 		<h2>Admin</h2>
+		<?php if(isset($alert)):?>
+			<p class="alert">username / password salah</p>
+		<?php endif;?>
 		<form action="" method="post">
 			<ul>
 				<li>

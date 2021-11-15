@@ -139,7 +139,23 @@
 .pembungkus .pembungkus-konten .konten .tabel {
   margin-top: 10px;
   height: 500px;
-  border: 1px solid #bbb;
+  overflow-y: scroll;
+}
+
+.pembungkus .pembungkus-konten .konten .tabel table {
+  width: 700px;
+  border-collapse: collapse;
+}
+
+.pembungkus .pembungkus-konten .konten .tabel table tr th,
+.pembungkus .pembungkus-konten .konten .tabel table tr td {
+  border: 2px solid #b3b3b3;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.pembungkus .pembungkus-konten .konten .tabel table tr:nth-child(odd) {
+  background-color: #d1d1d1;
 }
 
 footer {

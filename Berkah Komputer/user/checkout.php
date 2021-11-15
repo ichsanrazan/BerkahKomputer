@@ -140,25 +140,17 @@ if(!isset($_SESSION["user"])){
                  <div class="table-responsive">
                  <div class="title"><h3>Form Checkout</h3></div>
                  <div class="hero-unit">Harap isi form dibawah ini dengan lengkap dan benar sesuai idenditas anda!</div>
-                <div class="hero-unit">Total Belanja Anda Rp. <?php echo abs((int)$_GET['total']); ?>,-</div> 
+                <div class="hero-unit">Total Belanja Anda Rp. <?php echo number_format($_GET['total']); ?>,-</div> 
     <form id="formku" action="selesai.php" method="post">
     <table class="table table-condensed">
     <input type="hidden" name="total" value="<?php echo abs((int)$_GET['total']); ?>">
     <tr>
-        <td><label for="nm_usr">Nama</label></td>
-        <td><input name="nm_usr" type="text" class="required" minlength="6" id="nm_usr" size="200" /></td>
+        <td><label for="nama">Nama</label></td>
+        <td><input name="nama" type="text" id="nama" /></td>
       </tr>
       <tr>
-        <td><label for="log_usr">Username</label></td>
-        <td><input name="log_usr" type="text" class="required" minlength="6" id="log_usr" /></td>
-      </tr>
-      <tr>
-        <td><label for="pas_usr">Password</label></td>
-        <td><input name="pas_usr" type="password" class="required" minlength="6" id="pas_usr" /></td>
-      </tr>
-      <tr>
-        <td><label for="email_usr">Email</label></td>
-        <td><input name="email_usr" type="text" class="email required" id="email_usr" /></td>
+        <td><label for="handphone">No Handphone</label></td>
+        <td><input name="handphone" type="text" id="handphone" /></td>
       </tr>
       <tr>
         <td><label for="almt_usr">Alamat</label></td>
@@ -169,39 +161,21 @@ if(!isset($_SESSION["user"])){
         <td><input name="kp_usr" type="text" class="required number" minlength="5" maxlength="5" id="kp_usr" /></td>
       </tr>
       <tr>
-        <td><label for="kota_usr">Kota</label></td>
-        <td><input name="kota_usr" type="text" class="required" minlength="6" id="kota_usr" /></td>
-      </tr>
-      <tr>
-        <td><label for="tlp">No telepon</label></td>
-        <td><input name="tlp" type="text" class="required number" minlength="12" id="tlp" /></td>
-      </tr>
-      <tr>
-        <td><label for="rek">No Rekening</label></td>
-        <td><input name="rek" type="text" class="required number" minlength="12" id="rek" /></td>
-      </tr>
-      <tr>
-        <td><label for="nmrek">Nama Rekening</label></td>
-        <td><input name="nmrek" type="text" class="required" minlength="6" id="nmrek" /></td>
-      </tr>
-      <tr>
-        <td><label for="bank">Bank</label></td>
-        <td><select name="bank" class="required">
-        <option></option>
-        <option value="Mandiri">Mandiri</option>
-        <option value="BNI">BNI</option>
-        <option value="CIMB">CIMB</option>
-        <option value="BCA">BCA</option>
-        <option value="Bank Jabar">Bank Jabar</option>
-        <option value="Danamon">Danamon</option>
-        <option value="BRI">BRI</option>
-        <option value="Permata">Permata</option>
+        <td><label for="ongkir">ongkir</label></td>
+        <td><select name="kota">
+        <option>=======</option>
+		<option value="20000">BANTEN - Rp. 20.000</option>
+        <option value="20000">DKI JAKARTA - Rp. 20.000</option>
+        <option value="10000">JAWA BARAT - Rp. 10.000</option>
+        <option value="30000">JAWA TENGAH - Rp. 30.000</option>
+        <option value="40000">JAWA TIMUR - Rp. 40.000</option>
+        <option value="50000">MADURA - Rp. 50.000</option>
         </select>
         </td>
       </tr>
       <tr>
       <td></td>
-        <td><input type="submit" value="Simpan Data" name="finish"  class="btn btn-sm btn-primary"/>&nbsp;<a href="index.php" class="btn btn-sm btn-primary">Kembali</a></td>
+        <td><input type="submit" value="Checkout" name="submit"  class="btn btn-sm btn-primary"/>&nbsp;<a href="index.php" class="btn btn-sm btn-danger">Kembali</a></td>
         </tr>
     </table>
     </form>

@@ -1,5 +1,6 @@
 <?php 
 session_start();
+require_once "../database/db.php";
 // cek session admin
 if(!isset($_SESSION["admin"])){
   header("location:login.php");
@@ -37,7 +38,7 @@ if(!isset($_SESSION["admin"])){
         <div class="navbar">
           <p class="nav">Dashboard / Data User</p>
           <div class="profile">
-            <p><?php echo "coba"; ?></p>
+            <p>Kelompok 3</p>
             <img src="css/img/admin.png" alt="profile" />
           </div>
         </div>
@@ -48,6 +49,27 @@ if(!isset($_SESSION["admin"])){
             <button type="submit" name="cari"><i class="fa fa-search"></i><span>Cari</span></button>
           </form>
           <div class="tabel">
+            <table>
+              <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Handphone</th>
+                <th>Username</th>
+              </tr>
+              <?php 
+                $nomor = 1;
+                $allUser = $db->query("SELECT*FROM user");
+                while($user = $allUser->fetch_assoc()):
+              ?>
+              <tr>
+                <td><?php echo $nomor;?></td>
+                <td><?php echo $user["nama"];?></td>
+                <td><?php echo $user["handphone"];?></td>
+                <td><?php echo $user["username"];?></td>
+              </tr>
+              <?php $nomor++;?>
+              <?php endwhile;?>
+            </table>
           </div>
         </div>
       </div>

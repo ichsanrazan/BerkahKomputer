@@ -38,7 +38,7 @@ if(!isset($_SESSION["admin"])){
         <div class="navbar">
           <p class="nav">Dashboard / Data Produk</p>
           <div class="profile">
-            <p><?php echo "coba"; ?></p>
+            <p>Kelompok 3</p>
             <img src="css/img/admin.png" alt="profile" />
           </div>
         </div>
@@ -65,9 +65,7 @@ if(!isset($_SESSION["admin"])){
                     <?php echo $data["merek"]; ?><br>
                     <strong>Stok</strong> <?php echo $data["stok"];?><br>
                     Rp.<?php echo number_format($data["harga"]);?><br>
-                    <a href="hapus.php?id=<?php echo $data["id_barang"]; ?>" class="hapus"
-                    onclick="return confirm('Apakah barang ini mau dihapus?')" title="hapus produk"><i class="fa fa-trash"></i></a>
-                    <a href="update.php?id=<?php echo $data["id_barang"]; ?>" class="ubah" title="ubah produk"><i href="<?php echo "coba"; ?>" class="fa fa-edit"></i></a>
+                    <a href="update.php?id=<?php echo $data["id_barang"]; ?>" class="ubah" title="ubah produk"><i href="<?php echo "coba"; ?>" class="fa fa-edit"></i> Edit</a>
                   </div>
                 </div>
             <?php endwhile; ?>
@@ -85,9 +83,7 @@ if(!isset($_SESSION["admin"])){
                     <?php echo $data["merek"]; ?><br>
                     <strong>Stok</strong> <?php echo $data["stok"];?><br>
                     Rp.<?php echo number_format($data["harga"]);?><br>
-                    <a href="hapus.php?id=<?php echo $data["id_barang"]; ?>" class="hapus"
-                    onclick="return confirm('Apakah barang ini mau dihapus?')" title="hapus produk"><i class="fa fa-trash"></i></a>
-                    <a href="update.php?id=<?php echo $data["id_barang"]; ?>" class="ubah" title="ubah produk"><i href="<?php echo "coba"; ?>" class="fa fa-edit"></i></a>
+                    <a href="update.php?id=<?php echo $data["id_barang"]; ?>" class="ubah" title="ubah produk"><i href="<?php echo "coba"; ?>" class="fa fa-edit"></i> Edit</a>
                   </div>
                 </div>
               <?php endwhile;?>

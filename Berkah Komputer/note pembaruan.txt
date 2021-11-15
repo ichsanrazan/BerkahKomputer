@@ -1,0 +1,13 @@
+admin :
+1. Mengganti alert saat login menjadi box alert jika username atau password salah
+2. Menampilkan data user di halaman data user
+3. Menghilangkan fitur hapus produk
+
+
+user:
+1. Mengganti alert saat login menjadi box alert jika username atau password salah
+2. Berkomentar diTestimoni
+3. Tambah jumlah produk dikeranjang dengan klik tambah otomatis jumlah dan subharga bertambah
+4. Hapus produk dikeranjang
+5. jika logout history keranjang masih tersedia
+6. jika belum login tidak bisa checkout

@@ -35,6 +35,14 @@ html {
         text-align: center;
         font-size: 30px;
       }
+      .alert {
+        text-align: center;
+        color: red;
+        font-style: italic;
+        padding: 7px 0;
+        background-color: rgb(255, 157, 157);
+        border-radius: 5px;
+      }
       ul {
         li {
           list-style: none;

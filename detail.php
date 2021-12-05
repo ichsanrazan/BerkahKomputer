@@ -1,14 +1,17 @@
-<?php 
+<?php
 session_start();
 // koneksi database
-require_once "../database/db.php";
+require_once "database/db.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>DistroIT | Distro Online telengkap dan terpercaya di cikarang</title> 
+	<title>BerkahKomputer | Pusat perlengkapan komputer terpercaya</title> 
+	<meta name="description" content="Distro, cikarang, terlengkap, information, technology, jababeka, baru, murah"/>
+	<meta name="keywords" content="Kaos, Murah, Cikarang, Baru, terlengkap, harga, terjangkau" />
+	<meta name="author" content="Łukasz Holeczek from creativeLabs"/>
 	<!-- end: Meta -->
 	
 	<!-- start: Mobile Specific -->
@@ -31,20 +34,6 @@ require_once "../database/db.php";
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif">
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Boogaloo">
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Economica:700,400italic">
-	<style>
-	  .span4{
-		  box-shadow:0 0 10px #dddd;
-	  }
-	  .gambar{
-		  overflow:hidden;
-		  width:100%;
-		  height:250px;
-	  }
-	  .gambar img{
-		  width:100%;
-		  height:100%;
-	  }
-   </style>
 	<!-- end: CSS -->
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -84,16 +73,16 @@ require_once "../database/db.php";
 			          		<div class="nav-collapse collapse">
 			            		<ul class="nav">
 			              			<li><a href="index.php">Home</a></li>
-			              			<li  class="active"><a href="produk.php">Produk Kami</a></li>
+			              			<li><a href="produk.php">Produk Kami</a></li>
 									<li><a href="testimoni.php">Testimoni</a></li>
-                                    <li><a href="detail.php">Keranjang</a></li>
+                                    <li class="active"><a href="detail.php">Keranjang</a></li>
 									<?php if(isset($_SESSION["user"])): ?>
 									<li><a href="logout.php">Logout</a></li>
 			  						<?php else: ?>
-			  							<li class="dropdown">
-			   							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login <b class="caret"></b></a>
+			  						<li class="dropdown">
+			    					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Login <b class="caret"></b></a>
 			                			<ul class="dropdown-menu">
-			                  				<li><a href="../admin/login.php">Admin</a></li>
+			                  				<li><a href="admin/login.php">Admin</a></li>
 			                  				<li><a href="login.php">User</a></li>
 			                  				<!--<li class="divider"></li>
 			                  				<li class="nav-header">Nav header</li>
@@ -101,7 +90,7 @@ require_once "../database/db.php";
 			                  				<li><a href="#">One more separated link</a></li>-->
 			                			</ul>
 			              			</li>
-							<?php endif; ?>
+									<?php endif; ?>
 			            		</ul>
 			          		</div>
 			        	</div>
@@ -127,7 +116,7 @@ require_once "../database/db.php";
 			<!-- start: Container -->
 			<div class="container">
 
-				<h2><i class="ico-stats ico-white"></i>Produk Kami</h2>
+				<h2><i class="ico-usd ico-white"></i>Keranjang</h2>
 
 			</div>
 			<!-- end: Container  -->
@@ -140,52 +129,136 @@ require_once "../database/db.php";
 	<!--start: Wrapper-->
 	<div id="wrapper">
 				
-		<!--start: Container -->
-    	<div class="container"> 
-        <!--<div class="title"><h3>Keranjang Anda</h3></div>
-            <div class="hero-unit">
-            </div> -->            
-      		<!-- start: Row -->
-            
-      		<div class="row">
-	<?php
-    $sql = $db->query("SELECT*FROM barang");
-		while($data = $sql->fetch_assoc()){?>
-        		<div class="span4">
-          			<div class="icons-box">
-                        <div class="title"><h3><?php echo $data['merek']; ?></h3></div>
-                        <div class="gambar"><img src="../admin/css/img/<?php echo $data['gambar']; ?>"></div>
-						<div><h3>Rp.<?php echo number_format($data['harga']);?></h3></div>
-					<!--	<p>
-						
-						</p> -->
-						<div class="clear"><a href="detailproduk.php?uniq=<?php echo $data['id_barang'];?>" class="btn btn-lg btn-danger">Detail</a> </div>
+		<!-- start: Container -->
+		<div class="container">
 
-                    </div>
-        		</div>
-                <?php   
-              }
-           
-              
-              ?>
-<!---->
-      		</div>
-			<!-- end: Row -->
-					
-					
-				</div>	
+			<!-- start: Table -->
+            <div class="title"><h3>Detail Keranjang Belanja</h3></div>
+<table class="table table-hover table-condensed">
+<tr>
+					<th><center>No Pembelian</center></th>
+                    <th><center>Kode Barang</center></th>
+					<th><center>Nama Barang</center></th>
+					<th><center>Jumlah</center></th>
+					<th><center>Harga Satuan</center></th>
+					<th><center>Sub Total</center></th>
+					<th><center>Aksi</center></th>
+				</tr>
+			    <?php
+				//MENAMPILKAN DETAIL KERANJANG BELANJA//
+                
+    $total = 0;
+    //mysql_select_db($database_conn, $conn);
+    if (isset($_SESSION["keranjang"])) {
+        foreach ($_SESSION["keranjang"] as $id => $val) {
+            $allData = $db->query("SELECT*FROM barang where id_barang = '$id'");
+            $data = $allData->fetch_assoc();
+
+            $jumlah_harga = $data['harga'] * $val;
+            $total += $jumlah_harga;
+            $nomor = 1;
+			
+            ?>
+                <tr>
+                <td><center><?php echo $nomor; ?></center></td>
+                <td><center><?php echo $data['id_barang']; ?></center></td>
+                <td><center><?php echo $data['merek']; ?></center></td>
+                <td><center><?php echo number_format($val); ?></center></td>
+                <td><center><?php echo number_format($data["harga"]); ?></center></td>
+                <td><center><?php echo number_format($jumlah_harga); ?></center></td>
+                <td><center><a href="cart.php?uniq=<?php echo $data['id_barang'];?>" class="btn btn-xs btn-primary" style="margin-right:5px;">Tambah</a><a href="deleteCart.php?uniq=<?php echo $data['id_barang'];?>" class="btn btn-xs btn-danger">Hapus</a></center></td>
+                </tr>
+                <?php
+                    $nomor++;}
+							//$total += $sub;
+						}?>  
+                         <?php
+				if($total == 0){
+					echo '<tr><td colspan="5" align="center">Ups, Keranjang kosong!</td></tr></table>';
+					echo '<p><div align="right">
+						<a href="index.php" class="btn btn-info btn-lg">&laquo; Continue Shopping</a>
+						</div></p>';
+				} else {
+					echo '
+						<tr style="background-color: #DDD;"><td colspan="4" align="right"><b>Total :</b></td><td align="right"><b>Rp. '.number_format($total).'</b></td></td></td><td></td></tr></table>
+						<p><div align="right">
+						<a href="index.php" class="btn btn-info">&laquo; CONTINUE SHOPPING</a>
+						<a href="checkout.php?total='.$total.'" class="btn btn-success"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> CHECK OUT &raquo;</a>
+						</div></p>
+					';
+				}
+				?>
+
+</table>
+			
 				
-					
-				</div>
-				
-			</div>
-			<!--end: Row-->
-	
+			<!-- end: Table -->
+
 		</div>
-		<!--end: Container-->
-	
+		<!-- end: Container -->
+				
 	</div>
 	<!-- end: Wrapper  -->			
+
+    <!-- start: Footer Menu -->
+	<div id="footer-menu" class="hidden-tablet hidden-phone">
+
+		<!-- start: Container -->
+		<div class="container">
+			
+			<!-- start: Row -->
+			<div class="row">
+
+				<!-- start: Footer Menu Logo -->
+				<div class="span2">
+					<div id="footer-menu-logo">
+						<a href="#"><img src="img/logo-footer-menu.png" alt="logo" /></a>
+					</div>
+				</div>
+				<!-- end: Footer Menu Logo -->
+
+				<!-- start: Footer Menu Links-->
+				<div class="span9">
+					
+					<div id="footer-menu-links">
+
+						<ul id="footer-nav">
+
+							<li><a href="#">CPU</a></li>
+
+							<li><a href="#">GPU</a></li>
+
+							<li><a href="#">Motherboard</a></li>
+
+							<li><a href="#">RAM</a></li>
+
+							<li><a href="#">SSD</a></li>
+
+						</ul>
+
+					</div>
+					
+				</div>
+				<!-- end: Footer Menu Links-->
+
+				<!-- start: Footer Menu Back To Top -->
+				<div class="span1">
+						
+					<div id="footer-menu-back-to-top">
+						<a href="#"></a>
+					</div>
+				
+				</div>
+				<!-- end: Footer Menu Back To Top -->
+			
+			</div>
+			<!-- end: Row -->
+			
+		</div>
+		<!-- end: Container  -->	
+
+	</div>	
+	<!-- end: Footer Menu -->
 
 	<!-- start: Footer -->
 	<div id="footer">
@@ -330,4 +403,4 @@ require_once "../database/db.php";
 <!-- end: Java Script -->
 
 </body>
-</html>	
+</html>

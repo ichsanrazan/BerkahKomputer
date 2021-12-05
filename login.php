@@ -8,7 +8,7 @@ if(isset($_SESSION["user"])){
 }
 
 // koneksi 
-require_once "../database/db.php";
+require_once "database/db.php";
 
 if(isset($_POST["masuk"])){
 	$username = $_POST["username"];

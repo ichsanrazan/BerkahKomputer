@@ -1,7 +1,7 @@
 <?php
 session_start();
 // koneksi
-require_once "../database/db.php";
+require_once "database/db.php";
 ?>
 <!DOCTYPE html>
  <html lang="en">
@@ -74,7 +74,7 @@ require_once "../database/db.php";
 			  <li class="dropdown">
 			    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login <b class="caret"></b></a>
 			                			<ul class="dropdown-menu">
-			                  				<li><a href="../admin/login.php">Admin</a></li>
+			                  				<li><a href="admin/login.php">Admin</a></li>
 			                  				<li><a href="login.php">User</a></li>
 			                  				<!--<li class="divider"></li>
 			                  				<li class="nav-header">Nav header</li>
@@ -163,7 +163,7 @@ require_once "../database/db.php";
         		<div class="span4">
           			<div class="icons-box">
                         <div class="title"><h3><?php echo $data['merek']; ?></h3></div>
-						<div class="gambar"><img src="../admin/css/img/<?php echo $data['gambar']; ?>"/></div>
+						<div class="gambar"><img src="admin/css/img/<?php echo $data['gambar']; ?>"/></div>
                         
 						<div><h3>Rp.<?php echo number_format($data['harga']);?></h3></div>
 					<p>

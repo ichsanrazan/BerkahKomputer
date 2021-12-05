@@ -1,15 +1,14 @@
-<?php
+<?php 
 session_start();
-// koneksi
-require_once "../database/db.php";
-$id = $_GET["uniq"];
+// koneksi database
+require_once "database/db.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>DistroIT | Distro Online telengkap dan terpercaya di cikarang</title> 
+	<title>BerkahKomputer | Pusat perlengkapan komputer terpercaya</title> 
 	<!-- end: Meta -->
 	
 	<!-- start: Mobile Specific -->
@@ -32,6 +31,20 @@ $id = $_GET["uniq"];
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif">
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Boogaloo">
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Economica:700,400italic">
+	<style>
+	  .span4{
+		  box-shadow:0 0 10px #dddd;
+	  }
+	  .gambar{
+		  overflow:hidden;
+		  width:100%;
+		  height:250px;
+	  }
+	  .gambar img{
+		  width:100%;
+		  height:100%;
+	  }
+   </style>
 	<!-- end: CSS -->
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -40,7 +53,73 @@ $id = $_GET["uniq"];
     <![endif]-->
 </head>
 <body>
-    <!-- start: Page Title -->
+    
+	<!--start: Header -->
+	<header>
+		
+		<!--start: Container -->
+		<div class="container">
+			
+			<!--start: Row -->
+			<div class="row">
+					
+				<!--start: Logo -->
+				<div class="logo span3">
+						
+					<a class="brand" href="#"><img src="img/logo2.png" alt="Logo"></a>
+						
+				</div>
+				<!--end: Logo -->
+					
+				<!--start: Navigation -->
+				<div class="span9">
+					
+					<div class="navbar navbar-inverse">
+			    		<div class="navbar-inner">
+			          		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+			            		<span class="icon-bar"></span>
+			            		<span class="icon-bar"></span>
+			            		<span class="icon-bar"></span>
+			          		</a>
+			          		<div class="nav-collapse collapse">
+			            		<ul class="nav">
+			              			<li><a href="index.php">Home</a></li>
+			              			<li  class="active"><a href="produk.php">Produk Kami</a></li>
+									<li><a href="testimoni.php">Testimoni</a></li>
+                                    <li><a href="detail.php">Keranjang</a></li>
+									<?php if(isset($_SESSION["user"])): ?>
+									<li><a href="logout.php">Logout</a></li>
+			  						<?php else: ?>
+			  							<li class="dropdown">
+			   							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login <b class="caret"></b></a>
+			                			<ul class="dropdown-menu">
+			                  				<li><a href="admin/login.php">Admin</a></li>
+			                  				<li><a href="login.php">User</a></li>
+			                  				<!--<li class="divider"></li>
+			                  				<li class="nav-header">Nav header</li>
+			                  				<li><a href="#">Separated link</a></li>
+			                  				<li><a href="#">One more separated link</a></li>-->
+			                			</ul>
+			              			</li>
+							<?php endif; ?>
+			            		</ul>
+			          		</div>
+			        	</div>
+			      	</div>
+					
+				</div>	
+				<!--end: Navigation -->
+					
+			</div>
+			<!--end: Row -->
+			
+		</div>
+		<!--end: Container-->			
+			
+	</header>
+	<!--end: Header-->
+	
+	<!-- start: Page Title -->
 	<div id="page-title">
 
 		<div id="page-title-inner">
@@ -48,7 +127,7 @@ $id = $_GET["uniq"];
 			<!-- start: Container -->
 			<div class="container">
 
-				<h2><i class="ico-stats ico-white"></i>Produk Detail Produk</h2>
+				<h2><i class="ico-stats ico-white"></i>Produk Kami</h2>
 
 			</div>
 			<!-- end: Container  -->
@@ -60,63 +139,35 @@ $id = $_GET["uniq"];
 	
 	<!--start: Wrapper-->
 	<div id="wrapper">
+				
+		<!--start: Container -->
+    	<div class="container"> 
+        <!--<div class="title"><h3>Keranjang Anda</h3></div>
+            <div class="hero-unit">
+            </div> -->            
       		<!-- start: Row -->
             
       		<div class="row">
-            <div class="col-sm-6">
-<?php                  
-$allData = $db->query("SELECT*FROM barang WHERE id_barang=$id");
-$data  = $allData->fetch_assoc();
-?>
-        		<!--<div class="span4">-->
-          			<!--<div class="icons-box">-->
-                    <div class="hero-unit" style="margin-left: 20px;">
-                    <table>
-                    <tr>
-                        <td rowspan="7"><img src="../admin/css/img/<?php echo $data['gambar']; ?>" /></td>
-                        </tr>
-                        <tr>
-                        <td colspan="4"><div class="title"><h3><?php echo $data['merek']; ?></h3></div></td>
-                        </tr>
-                        <tr>
-                        <td></td>
-                        <td size="200"><h3>Harga</h3></td>
-                        <td><h3>:</h3></td>
-						<td><div><h3>Rp.<?php echo number_format($data['harga']);?></h3></div></td>
-                        </tr>
-                        <tr>
-                        <td></td>
-                        <td><h3>Stock</h3></td>
-                        <td><h3>:</h3></td>
-                        <td><div><h3><?php if ($data['stok'] >= 1){
-	                           echo $data["stok"];	
-                                } else {
-	                           echo '<strong style="color: red;">Kosong</strong>';	
-                                }; ?></h3></div></td>
-                        </tr>
-                        <tr>
-                        <td></td>
-                        </tr>
-                        <tr>
-                        <td></td>
-                        <td><h3>Keterangan</h3></td>
-                        <td><h3>:</h3></td>
-                        <td><div><h3><?php echo "Tersedia"; ?></h3></div></td>
-                        </tr>
+	<?php
+    $sql = $db->query("SELECT*FROM barang");
+		while($data = $sql->fetch_assoc()){?>
+        		<div class="span4">
+          			<div class="icons-box">
+                        <div class="title"><h3><?php echo $data['merek']; ?></h3></div>
+                        <div class="gambar"><img src="admin/css/img/<?php echo $data['gambar']; ?>"></div>
+						<div><h3>Rp.<?php echo number_format($data['harga']);?></h3></div>
 					<!--	<p>
 						
 						</p> -->
-                        <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-						<td><div class="clear"><a href="produk.php" class="btn btn-lg btn-danger">&laquo; Kembali</a> <a href="cart.php?uniq=<?php echo $data["id_barang"]; ?>" class="btn btn-lg btn-primary">Masuk Keranjang  &raquo;</a></div></td>
-                        </tr>
-     
-                    </table>
+						<div class="clear"><a href="detailproduk.php?uniq=<?php echo $data['id_barang'];?>" class="btn btn-lg btn-danger">Detail</a> </div>
+
                     </div>
-                    <!--</div> -->
-        		<!--</div> -->
+        		</div>
+                <?php   
+              }
+           
+              
+              ?>
 <!---->
       		</div>
 			<!-- end: Row -->
@@ -127,16 +178,14 @@ $data  = $allData->fetch_assoc();
 					
 				</div>
 				
-                </div>
 			</div>
 			<!--end: Row-->
 	
 		</div>
 		<!--end: Container-->
-
+	
 	</div>
 	<!-- end: Wrapper  -->			
-
 
 	<!-- start: Footer -->
 	<div id="footer">
@@ -150,9 +199,9 @@ $data  = $allData->fetch_assoc();
 				<!-- start: About -->
 				<div class="span3">
 					
-					<h3>Tentang DistroIT</h3>
+					<h3>Tentang BerkahKomputer</h3>
 					<p>
-						DistroIT adalah toko online yang bergerak di bidang fasion, sasaran kami semua kalangan baik muda maupun tua, mulai dari anak - anak dan orang dewasa.
+						BerkahKomputer adalah toko online yang bergerak di bidang perlengkapan komputer, sasaran kami semua kalangan baik muda maupun tua, peminat IT atau kasual
 					</p>
 						
 				</div>
@@ -161,7 +210,7 @@ $data  = $allData->fetch_assoc();
 				<!-- start: Photo Stream -->
 				<div class="span3">
 					
-				<h3>Alamat Kami</h3>
+					<h3>Alamat Kami</h3>
 					Jl. Margonda Raya No.100, Pondok Cina, Beji, Kota Depok, Jawa Barat 16424 (Kampus D)<br />
                     Telp : 081287727825<br />
                     Email : <a href="mailto:ichsanrazan3@gmail.com">ichsanrazan3@gmail.com</a> / <a href="mailto:ichsanrazan3@gmail.com">ichsanrazan3@gmail.com</a>
@@ -260,7 +309,7 @@ $data  = $allData->fetch_assoc();
 		<div class="container">
 		
 			<p>
-				Copyright &copy; 2021 <!-- <a href="http://www.niqoweb.com">DistroIT 2015</a> <a href="http://bootstrapmaster.com" alt="Bootstrap Themes">Bootstrap Themes</a> designed by BootstrapMaster -->
+			Copyright &copy; 2021 <!-- <a href="http://www.niqoweb.com">DistroIT 2015</a> <a href="http://bootstrapmaster.com" alt="Bootstrap Themes">Bootstrap Themes</a> designed by BootstrapMaster -->
 			</p>
 	
 		</div>

@@ -107,7 +107,7 @@ session_start();
 			  						<li class="dropdown">
 			   						 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login <b class="caret"></b></a>
 			                			<ul class="dropdown-menu">
-			                  				<li><a href="../admin/login.php">Admin</a></li>
+			                  				<li><a href="admin/login.php">Admin</a></li>
 			                  				<li><a href="login.php">User</a></li>
 			                  				<!--<li class="divider"></li>
 			                  				<li class="nav-header">Nav header</li>

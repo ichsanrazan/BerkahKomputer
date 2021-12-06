@@ -210,9 +210,9 @@ if(!isset($_SESSION["user"])){
 				<!-- start: About -->
 				<div class="span3">
 					
-					<h3>Tentang DistroIT</h3>
+					<h3>Tentang BerkahKomputer</h3>
 					<p>
-						DistroIT adalah toko online yang bergerak di bidang fasion, sasaran kami semua kalangan baik muda maupun tua, mulai dari anak - anak dan orang dewasa.
+					BerkahKomputer adalah toko online yang bergerak di bidang perlengkapan komputer, sasaran kami semua kalangan baik muda maupun tua, peminat IT atau kasual
 					</p>
 						
 				</div>
@@ -222,9 +222,9 @@ if(!isset($_SESSION["user"])){
 				<div class="span3">
 					
 					<h3>Alamat Kami</h3>
-					Kp. Wangkal Rt.03 Rw.07 Desa Kalijaya Kecamatan Cikarang Utara Kabupaten Bekasi 17530<br />
-                    Telp : 085694984803<br />
-                    Email : <a href="mailto:hakko_bio_richard@yahoo.co.id">hakko_bio_richard@yahoo.co.id</a> / <a href="mailto:hakkobiorichard@gmail.com">hakkobiorichard@gmail.com</a>
+					Jl. Margonda Raya No.100, Pondok Cina, Beji, Kota Depok, Jawa Barat 16424 (Kampus D)<br />
+                    Telp : 081287727825<br />
+                    Email : <a href="mailto:ichsanrazan3@gmail.com">ichsanrazan3@gmail.com</a> / <a href="mailto:ichsanrazan3@gmail.com">ichsanrazan3@gmail.com</a>
 				</div>
 				<!-- end: Photo Stream -->
 

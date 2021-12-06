@@ -6,7 +6,7 @@ session_start();
 <head>
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>DistroIT | Distro Online telengkap dan terpercaya di cikarang</title> 
+	<title>BerkahKomputer | Pusat perlengkapan komputer terpercaya</title> 
 	<meta name="description" content="Distro, cikarang, terlengkap, information, technology, jababeka, baru, murah"/>
 	<meta name="keywords" content="Kaos, Murah, Cikarang, Baru, terlengkap, harga, terjangkau" />
 	<meta name="author" content="Hakko Bio Richard"/>
